@@ -87,13 +87,7 @@ Run the following command to build the project and run the test cases:
    npm run tb
 
 
-### 4. Folder Structure for Test Cases
 
-- Organize test cases into a well-defined folder structure.
-- Ensure that the test structure reflects the application's architecture and modules.
-
-### 5. Additional Tests for Edge Cases
-- Ensure that critical paths and edge cases are covered by tests.
 
 ## Project Structure
 
@@ -140,3 +134,14 @@ The project is organized into the following structure to promote clarity and mai
 ### 3. Code Coverage
 
 - Aim for high coverage to increase reliability and maintainability.
+
+### 4. Folder Structure for Test Cases
+
+- Organize test cases into a well-defined folder structure.
+- Ensure that the test structure reflects the application's architecture and modules.
+
+### 5. Additional Tests for Edge Cases
+- Ensure that critical paths and edge cases are covered by tests.
+
+### 5. Cleanup
+- Code review and remove unused code and improve code quality
