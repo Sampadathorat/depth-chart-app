@@ -27,8 +27,13 @@ export class DepthChartDB {
         DepthChartDB.playersPositionDepth = [];
     }
     static isSeeded() {
-        if (DepthChartDB.sports.length > 0 && DepthChartDB.teams.length > 0 && DepthChartDB.teamUnits.length > 0 && DepthChartDB.positions.length > 0) {
-             return true;
+        if (
+            DepthChartDB.sports.length > 0 &&
+            DepthChartDB.teams.length > 0 &&
+            DepthChartDB.teamUnits.length > 0 &&
+            DepthChartDB.positions.length > 0
+        ) {
+            return true;
         }
         return false;
     }
@@ -383,124 +388,55 @@ export class DepthChartDB {
             posRES,
         ];
 
-        const player1Alias = 'YayaD';
+        const player1Alias = 'JaelonDarden';
         const player1: IPlayerEntity = {
             alias: player1Alias,
-            name: { lastName: 'Diaby', firstName: 'Yaya' },
+            name: { lastName: 'Darden', firstName: 'Jaelon' },
             createdDate: currentDate,
             updatedDate: currentDate,
         };
 
-        const player2Alias = 'RachaadW';
+        const player2Alias = 'KyleTrask';
         const player2: IPlayerEntity = {
             alias: player2Alias,
-            name: { lastName: 'White', firstName: 'Rachaad' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-
-        const player3Alias = 'KyleT';
-        const player3: IPlayerEntity = {
-            alias: player3Alias,
             name: { lastName: 'Trask', firstName: 'Kyle' },
             createdDate: currentDate,
             updatedDate: currentDate,
         };
 
-        const player4Alias = 'JordanW';
+        const player3Alias = 'ScottMiller';
+        const player3: IPlayerEntity = {
+            alias: player3Alias,
+            name: { lastName: 'Miller', firstName: 'Scott' },
+            createdDate: currentDate,
+            updatedDate: currentDate,
+        };
+
+        const player4Alias = 'BlaineGabbert';
         const player4: IPlayerEntity = {
             alias: player4Alias,
-            name: { lastName: 'Whitehead', firstName: 'Jordan' },
+            name: { lastName: 'Gabbert', firstName: 'Blaine' },
             createdDate: currentDate,
             updatedDate: currentDate,
         };
 
-        const player5Alias = 'ChaseM';
+        const player5Alias = 'TomBrady';
         const player5: IPlayerEntity = {
             alias: player5Alias,
-            name: { lastName: 'McLaughlin', firstName: 'Chase' },
+            name: { lastName: 'Tom', firstName: 'Brady' },
             createdDate: currentDate,
             updatedDate: currentDate,
         };
 
-        const player6Alias = 'JakeC';
+        const player6Alias = 'MikeEvans';
         const player6: IPlayerEntity = {
             alias: player6Alias,
-            name: { lastName: 'Camarda', firstName: 'Jake' },
+            name: { lastName: 'Evans', firstName: 'Mike' },
             createdDate: currentDate,
             updatedDate: currentDate,
         };
 
-        const player7Alias = 'BakerM';
-        const player7: IPlayerEntity = {
-            alias: player7Alias,
-            name: { lastName: 'Mayfield', firstName: 'Baker' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-
-        const player8Alias = 'BuckyI';
-        const player8: IPlayerEntity = {
-            alias: player8Alias,
-            name: { lastName: 'Irving', firstName: 'Bucky' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-
-        const player9Alias = 'SirVoceaD';
-        const player9: IPlayerEntity = {
-            alias: player9Alias,
-            name: { lastName: 'Dennis', firstName: 'SirVocea' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-
-        const player10Alias = 'KameronJ';
-        const player10: IPlayerEntity = {
-            alias: player10Alias,
-            name: { lastName: 'Johnson', firstName: 'Kameron' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-
-        const player11Alias = 'TreyP';
-        const player11: IPlayerEntity = {
-            alias: player11Alias,
-            name: { lastName: 'Palmer', firstName: 'Trey' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-
-        const player12Alias = 'JohnW';
-        const player12: IPlayerEntity = {
-            alias: player12Alias,
-            name: { lastName: 'Wolford', firstName: 'John' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-
-        const player13Alias = 'ChrisG';
-        const player13: IPlayerEntity = {
-            alias: player13Alias,
-            name: { lastName: 'Godwin', firstName: 'Chris' },
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-        DepthChartDB.players = [
-            player1,
-            player2,
-            player3,
-            player4,
-            player5,
-            player6,
-            player7,
-            player8,
-            player9,
-            player10,
-            player11,
-            player12,
-            player13,
-        ];
+        DepthChartDB.players = [player1, player2, player3, player4, player5, player6];
         const teamPlayer1: ITeamPlayerEntity = {
             teamCode: tbbCode,
             playerAlias: player1Alias,
@@ -519,72 +455,10 @@ export class DepthChartDB {
             createdDate: currentDate,
             updatedDate: currentDate,
         };
-        const teamPlayer3: ITeamPlayerEntity = {
-            teamCode: tbbCode,
-            playerAlias: player3Alias,
-            teamPlayerNumber: 3,
-            status: PlayerStatus.Starter,
-            additionalInfo: '21/2',
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-        const teamPlayer4: ITeamPlayerEntity = {
-            teamCode: tbbCode,
-            playerAlias: player4Alias,
-            teamPlayerNumber: 4,
-            status: PlayerStatus.Starter,
-            additionalInfo: '18/4',
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-        const teamPlayer5: ITeamPlayerEntity = {
-            teamCode: tbbCode,
-            playerAlias: player5Alias,
-            teamPlayerNumber: 5,
-            status: PlayerStatus.Starter,
-            additionalInfo: 'U/Ind',
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-        const teamPlayer6: ITeamPlayerEntity = {
-            teamCode: tbbCode,
-            playerAlias: player6Alias,
-            teamPlayerNumber: 6,
-            status: PlayerStatus.Starter,
-            additionalInfo: '22/4',
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-        const teamPlayer7: ITeamPlayerEntity = {
-            teamCode: tbbCode,
-            playerAlias: player7Alias,
-            teamPlayerNumber: 7,
-            status: PlayerStatus.Starter,
-            additionalInfo: 'U/LAR',
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-        const teamPlayer8: ITeamPlayerEntity = {
-            teamCode: tbbCode,
-            playerAlias: player8Alias,
-            teamPlayerNumber: 8,
-            status: PlayerStatus.Starter,
-            additionalInfo: '24/4',
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
-        const teamPlayer9: ITeamPlayerEntity = {
-            teamCode: tbbCode,
-            playerAlias: player9Alias,
-            teamPlayerNumber: 9,
-            status: PlayerStatus.Starter,
-            additionalInfo: '23/5',
-            createdDate: currentDate,
-            updatedDate: currentDate,
-        };
+
         const teamPlayer10: ITeamPlayerEntity = {
             teamCode: tbbCode,
-            playerAlias: player10Alias,
+            playerAlias: player3Alias,
             teamPlayerNumber: 10,
             status: PlayerStatus.Starter,
             additionalInfo: 'CF24',
@@ -593,7 +467,7 @@ export class DepthChartDB {
         };
         const teamPlayer11: ITeamPlayerEntity = {
             teamCode: tbbCode,
-            playerAlias: player11Alias,
+            playerAlias: player4Alias,
             teamPlayerNumber: 11,
             status: PlayerStatus.Starter,
             additionalInfo: '23/6',
@@ -602,7 +476,7 @@ export class DepthChartDB {
         };
         const teamPlayer12: ITeamPlayerEntity = {
             teamCode: tbbCode,
-            playerAlias: player12Alias,
+            playerAlias: player5Alias,
             teamPlayerNumber: 12,
             status: PlayerStatus.Starter,
             additionalInfo: 'U/LAR',
@@ -611,7 +485,7 @@ export class DepthChartDB {
         };
         const teamPlayer13: ITeamPlayerEntity = {
             teamCode: tbbCode,
-            playerAlias: player13Alias,
+            playerAlias: player6Alias,
             teamPlayerNumber: 13,
             status: PlayerStatus.Starter,
             additionalInfo: '17/3',
@@ -621,13 +495,13 @@ export class DepthChartDB {
         DepthChartDB.teamPlayers = [
             teamPlayer1,
             teamPlayer2,
-            teamPlayer3,
-            teamPlayer4,
-            teamPlayer5,
-            teamPlayer6,
-            teamPlayer7,
-            teamPlayer8,
-            teamPlayer9,
+            // teamPlayer3,
+            // teamPlayer4,
+            // teamPlayer5,
+            // teamPlayer6,
+            // teamPlayer7,
+            // teamPlayer8,
+            // teamPlayer9,
             teamPlayer10,
             teamPlayer11,
             teamPlayer12,

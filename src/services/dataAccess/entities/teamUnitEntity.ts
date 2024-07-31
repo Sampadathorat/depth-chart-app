@@ -1,7 +1,4 @@
+import { ITeamUnit } from '../../../models/teamUnit';
 import { ITrackingFields } from '../../../types/interfaces';
 
-export interface ITeamUnitEntity extends ITrackingFields {
-    code: string;
-    teamCode: string;
-    name: string;
-}
+export interface ITeamUnitEntity extends ITeamUnit, ITrackingFields {}

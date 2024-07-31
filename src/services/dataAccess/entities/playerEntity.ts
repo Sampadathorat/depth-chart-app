@@ -1,6 +1,4 @@
-import { IName, ITrackingFields } from '../../../types/interfaces';
+import { IPlayer } from '../../../models/player';
+import { ITrackingFields } from '../../../types/interfaces';
 
-export interface IPlayerEntity extends ITrackingFields {
-    alias: string;
-    name: IName;
-}
+export interface IPlayerEntity extends IPlayer, ITrackingFields {}

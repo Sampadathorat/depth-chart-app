@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { addPlayer } from '../controllers/depthChartController';
+import { addPlayer, getFullDepthChart } from '../controllers/depthChartController';
+import { DepthChartService } from '../services/depthChartService';
 
 const router = Router();
-
+const depthChartService = new DepthChartService();
 router.post('/addPlayer', addPlayer);
-// router.post('/removePlayer', removePlayer);
-// router.post('/getBackups', getBackupsList);
+router.get('/depth-chart', getFullDepthChart(depthChartService));
 
 export default router;

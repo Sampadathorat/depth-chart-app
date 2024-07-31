@@ -1,7 +1,6 @@
+import { IName } from '../types/interfaces';
+
 export interface IPlayer {
     alias: string;
-    firstName: string;
-    lastName: string;
+    name: IName;
 }
-
-export interface INewPlayer extends Omit<IPlayer, 'id'> {}

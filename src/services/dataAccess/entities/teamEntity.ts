@@ -1,10 +1,4 @@
-import { IName, ITrackingFields } from '../../../types/interfaces';
+import { ITeam } from '../../../models/team';
+import { ITrackingFields } from '../../../types/interfaces';
 
-export interface ITeamEntity extends ITrackingFields {
-    code: string;
-    sportCode: string;
-    name: string;
-    headCoach?: IName;
-    offCordinator?: IName;
-    defCordinator?: IName;
-}
+export interface ITeamEntity extends ITeam, ITrackingFields {}

@@ -1,7 +1,6 @@
-import { IPlayerPositionDepth } from './playerPositionDepth';
-import { ITeamUnit } from './teamUnit';
+import { IPositionDepth } from './positionDepth';
 
 export interface IDepthChart {
     id: string;
-    units: ITeamUnit[];
+    chartEntries: IPositionDepth[];
 }

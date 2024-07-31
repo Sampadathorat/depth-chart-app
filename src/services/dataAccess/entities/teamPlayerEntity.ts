@@ -1,10 +1,4 @@
-import { PlayerStatus } from '../../../types/enums';
+import { ITeamPlayer } from '../../../models/teamPlayer';
 import { ITrackingFields } from '../../../types/interfaces';
 
-export interface ITeamPlayerEntity extends ITrackingFields {
-    teamPlayerNumber: number;
-    playerAlias: string;
-    teamCode: string;
-    status: PlayerStatus;
-    additionalInfo: string;
-}
+export interface ITeamPlayerEntity extends ITeamPlayer, ITrackingFields {}

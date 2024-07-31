@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depth Chart for <%= team.name %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .team-info {
+            margin-bottom: 20px;
+        }
+        .team-info p {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Depth Chart for <%= team.name %></h1>
+    <div class="team-info">
+        <p><strong>Sport:</strong> <%= team.sportCode %></p>
+        <p><strong>Offensive Coordinator:</strong> <%= team.offCordinator.firstName %> <%= team.offCordinator.lastName %></p>
+        <p><strong>Defensive Coordinator:</strong> <%= team.defCordinator.firstName %> <%= team.defCordinator.lastName %></p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Pos</th>
+                <th>No.</th>
+                <th>Player 1</th>
+                <th>No</th>
+                <th>Player 2</th>
+                <th>No</th>
+                <th>Player 3</th>
+                <th>No</th>
+                <th>Player 4</th>
+                <th>No</th>
+                <th>Player 5</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% team.units.forEach(unit => { %>
+                <% unit.positions.forEach(position => { %>
+                    <tr>
+                        <td><%= position.code %></td>
+                        <% position.depths.forEach((depth, index) => { %>
+                            <% if (index === 0) { %>
+                                <td><%= depth.player.teamPlayerNumber %></td>
+                                <td><%= depth.player.name.lastName %>, <%= depth.player.name.firstName %></td>
+                            <% } else { %>
+                                <td><%= depth.player.teamPlayerNumber %></td>
+                                <td><%= depth.player.name.lastName %>, <%= depth.player.name.firstName %></td>
+                            <% } %>
+                        <% }) %>
+                        <% for (let i = position.depths.length; i < 5; i++) { %>
+                            <td></td>
+                            <td></td>
+                        <% } %>
+                    </tr>
+                <% }) %>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
