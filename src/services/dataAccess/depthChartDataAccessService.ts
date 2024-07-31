@@ -10,9 +10,14 @@ import { IPositionEntity } from './entities/positionEntity';
 import { DepthChartDB } from './inMemoryDb';
 
 export interface IDepthChartDataAccessService {
+    // ## Master data
     seed(): Promise<boolean>;
+
+    // ## Depth chart updations
     addPlayerToDepthChart(positionCode: string, playerAlias: string, depth?: number): Promise<IPositionDto | undefined>;
     removePlayerFromDepthChart(positionCode: string, playerAlias: string): Promise<IPlayerDto | undefined>;
+
+    // ## get functions
     getBackups(positionCode: string, playerAlias: string): Promise<IPositionDepthDto[]>;
     getTeam(teamCode: string, includeUnits?: boolean): Promise<ITeamDto | undefined>;
     getTeamUnits(teamCode: string, excludeUnitsWithEmptyPositions?: boolean): Promise<ITeamUnitDto[]>;
@@ -36,11 +41,14 @@ export class DepthChartDataAccessService implements IDepthChartDataAccessService
         console.debug(`## DepthChartDataAccessService: constructor`, this._currentDate);
     }
 
+    // ## Master data
     async seed(): Promise<boolean> {
         const currentDate = this._currentDate;
         DepthChartDB.Seed(currentDate);
         return true;
     }
+
+    // ## Depth chart updations
     async addPlayerToDepthChart(
         positionCode: string,
         playerAlias: string,
@@ -76,37 +84,6 @@ export class DepthChartDataAccessService implements IDepthChartDataAccessService
         return updatedPosition;
     }
 
-    async getEndOfTheDepth(positionCode: string): Promise<number> {
-        const depths: IPositionDepthDto[] = DepthChartDB.playersPositionDepth.filter(
-            (p) => p.positionCode === positionCode
-        );
-
-        if (depths.length === 0) {
-            return 0;
-        }
-        const maxDepth = depths.reduce((maxDepth, position) => {
-            return position.depth > maxDepth ? position.depth : maxDepth;
-        }, depths[0].depth);
-        return maxDepth + 1;
-    }
-
-    async freeUpPositionDepths(positionCode: string, depth: number): Promise<boolean> {
-        DepthChartDB.playersPositionDepth.forEach((p) => {
-            if (p.positionCode === positionCode && p.depth >= depth) {
-                p.depth += 1;
-            }
-        });
-        return true;
-    }
-
-    async adjustExistingDepths(positionCode: string, depth: number): Promise<boolean> {
-        DepthChartDB.playersPositionDepth.forEach((p) => {
-            if (p.positionCode === positionCode && p.depth >= depth && p.depth !== 0) {
-                p.depth -= 1;
-            }
-        });
-        return true;
-    }
     async removePlayerFromDepthChart(positionCode: string, playerAlias: string): Promise<IPlayerDto | undefined> {
         const position = DepthChartDB.playersPositionDepth.find(
             (p) => p.positionCode === positionCode && p.playerAlias === playerAlias
@@ -121,6 +98,22 @@ export class DepthChartDataAccessService implements IDepthChartDataAccessService
         const updatedPosition = await this.getPlayer(playerAlias);
         return updatedPosition;
     }
+
+    async getEndOfTheDepth(positionCode: string): Promise<number> {
+        const depths: IPositionDepthDto[] = DepthChartDB.playersPositionDepth.filter(
+            (p) => p.positionCode === positionCode
+        );
+
+        if (depths.length === 0) {
+            return 0;
+        }
+        const maxDepth = depths.reduce((maxDepth, position) => {
+            return position.depth > maxDepth ? position.depth : maxDepth;
+        }, depths[0].depth);
+        return maxDepth + 1;
+    }
+
+    // ## get functions
     async getBackups(positionCode: string, playerAlias: string): Promise<IPositionDepthDto[]> {
         const position = DepthChartDB.playersPositionDepth.find(
             (p) => p.positionCode === positionCode && p.playerAlias === playerAlias
@@ -200,27 +193,6 @@ export class DepthChartDataAccessService implements IDepthChartDataAccessService
         return depthPositions;
     }
 
-    private async buildPositionDto(
-        position: IPositionEntity,
-        includeDepths: boolean = true,
-        excludePositionsWithEmptyDepths: boolean = true
-    ): Promise<IPositionDto | undefined> {
-        const depths: IPositionDepthDto[] = includeDepths === true ? await this.getPositionDepths(position.code) : [];
-
-        if (excludePositionsWithEmptyDepths === true && depths.length === 0) {
-            return undefined;
-        }
-
-        return {
-            code: position.code,
-            teamCode: position.teamCode,
-            teamUnitCode: position.teamUnitCode,
-            name: position.name,
-            maxDepth: position.maxDepth,
-            depths: depths,
-        };
-    }
-
     async getPositionDepths(positionCode: string): Promise<IPositionDepthDto[]> {
         const depths = await DepthChartDB.playersPositionDepth.filter((p) => p.positionCode === positionCode);
         const playerDepths: IPositionDepthDto[] = [];
@@ -260,6 +232,46 @@ export class DepthChartDataAccessService implements IDepthChartDataAccessService
             status: teamPlayer.status,
             additionalInfo: teamPlayer.additionalInfo,
             name: player.name,
+        };
+    }
+
+    // ## private functions
+    private async freeUpPositionDepths(positionCode: string, depth: number): Promise<boolean> {
+        DepthChartDB.playersPositionDepth.forEach((p) => {
+            if (p.positionCode === positionCode && p.depth >= depth) {
+                p.depth += 1;
+            }
+        });
+        return true;
+    }
+
+    private async adjustExistingDepths(positionCode: string, depth: number): Promise<boolean> {
+        DepthChartDB.playersPositionDepth.forEach((p) => {
+            if (p.positionCode === positionCode && p.depth >= depth && p.depth !== 0) {
+                p.depth -= 1;
+            }
+        });
+        return true;
+    }
+
+    private async buildPositionDto(
+        position: IPositionEntity,
+        includeDepths: boolean = true,
+        excludePositionsWithEmptyDepths: boolean = true
+    ): Promise<IPositionDto | undefined> {
+        const depths: IPositionDepthDto[] = includeDepths === true ? await this.getPositionDepths(position.code) : [];
+
+        if (excludePositionsWithEmptyDepths === true && depths.length === 0) {
+            return undefined;
+        }
+
+        return {
+            code: position.code,
+            teamCode: position.teamCode,
+            teamUnitCode: position.teamUnitCode,
+            name: position.name,
+            maxDepth: position.maxDepth,
+            depths: depths,
         };
     }
 }

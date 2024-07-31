@@ -6,7 +6,6 @@ export class ServiceException extends Error {
 
     constructor(code: ResponseCodes, msg: string, methodName: string = '', log: boolean = true) {
         super(msg);
-        // Set the prototype to the ServiceException class
         Object.setPrototypeOf(this, ServiceException.prototype);
         this.code = code;
         this.name = 'ServiceException';

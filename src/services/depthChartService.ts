@@ -7,10 +7,11 @@ import { IPlayerDto } from './dtos/playerDtos';
 import { ITeamDto } from './dtos/teamDtos';
 
 export interface IDepthChartService {
+    seed(): Promise<boolean>;
     addPlayerToDepthChart(positionCode: string, playerAlias: string, depth: number): Promise<IPositionDto | undefined>;
+    removePlayerFromDepthChart(positionCode: string, playerAlias: string): Promise<IPlayerDto | undefined>;
     getFullDepthChart(teamCode: string): Promise<ITeamDto | undefined>;
     getBackups(positionCode: string, playerAlias: string): Promise<IPositionDepthDto[]>;
-    removePlayerFromDepthChart(positionCode: string, playerAlias: string): Promise<IPlayerDto | undefined>;
 }
 export class DepthChartService implements IDepthChartService {
     private readonly _dataAccess: IDepthChartDataAccessService;

@@ -130,31 +130,17 @@ src
     └── (Contains test files organized by type and functionality)
 ```
 
-### Description
+## Models
 
-- **`src`**: The main source directory for the application code.
+- **`ISport`**: A sport model that holds information about a sport.
+- **`ITeam`**: A team model for storing team information. Each team is associated with a sport, and the code serves as the unique identifier.
+- **`IPlayer`**: A player model that stores individual information for players, independent of the team they are associated with.
+- **`ITeamPlayer`**: To store information about a player within the team.The combination of playerAlias and teamCode serves as the unique identifier. A player will have a teamPlayerNumber assigned when they become part of the team.
+- **`ITeamUnit`**: To hold information about the units within a team.
+- **`IPosition`**: The position model provides details of a position within a team unit. It is associated with a team unit, and the teamCode field is redundantly stored to simplify querying. The maxDepth field specifies the maximum number of depths the position can have.
+- **`IPositionDepth`**: The positionDepth object stores information about a player at a specific depth for a given position. When a player is added to the depth chart, a new record is created in this object
+- **`IDepthChart`**: This model is intended for storing depth chart snapshots, but it is not currently utilized in the solution.
 
-  - **`controllers`**: Manages HTTP requests, coordinates service calls, and handles responses.
-
-  - **`models`**: Defines data models and business logic.
-
-  - **`routes`**: Specifies the API routes and maps them to the appropriate controller functions.
-
-  - **`services`**: Contains business logic and data access layers.
-
-    - **`dataAccess`**: Manages data access and persistence.
-
-      - **`entities`**: Defines database entities or schemas.
-
-      - **`depthChartDataAccessService`**: Contains methods for accessing and manipulating depth chart data.
-
-      - **`inMemoryDb.ts`**: Implements an in-memory database for development and testing purposes.
-
-    - **`dtos`**: Defines Data Transfer Objects for data standardization.
-
-  - **`types`**: Includes custom TypeScript types and interfaces.
-
-  - **`tests`**: Contains unit tests.
 
 ## Pending Tasks
 
