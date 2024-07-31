@@ -1,6 +1,4 @@
-Here is your formatted README file:
 
-```markdown
 # Depth Chart App
 
 A Node.js application using Express for managing and visualizing sports team depth charts.
